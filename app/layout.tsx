@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +29,34 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="flex flex-col justify-between h-screen">
+          {/* header section */}
+          <div className="navbar bg-base-100 border-b-2">
+            <div className="flex-none">
+            </div>
+            <div className="flex-1">
+              <a href="/" className="btn btn-ghost text-xl">RootLayout Title</a>
+            </div>
+
+            <ul className="menu menu-vertical lg:menu-horizontal bg-base-200 rounded-box">
+              <Link href="/admin">Nested Layout</Link>
+              <li><a>Item 2</a></li>
+              <li><a>Item 3</a></li>
+            </ul>
+          </div>
+
+          {/* main section */}
+          <main className="flex-grow">
+            {children}
+          </main>
+
+          {/* footer section */}
+          <footer className="footer footer-center bg-base-300 text-base-content p-4">
+            <aside>
+              <p>Copyright © {new Date().getFullYear()} - All right reserved.</p>
+            </aside>
+          </footer>
+        </div>
       </body>
     </html>
   );
